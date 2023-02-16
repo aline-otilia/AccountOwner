@@ -15,3 +15,24 @@ git add .
 git commit -m "Criação da estrutura de pasta, da solução e do projeto WebApi do backend"
 git status
 git push
+
+/* Criar um projeto de biblioteca de classe */
+/* Tem que estar na pasta backend */
+dotnet new classlib --name Contracts -f net6.0
+dotnet sln add Contracts\Contracts.csproj
+
+/* Tem que estar na pasta backend */
+dotnet new classlib --name LoggerService -f net6.0
+dotnet sln add LoggerService\LoggerService.csproj
+
+/* Adicionando Referencia do LoggerService na AccountOwnerServer(API) */
+dotnet add AccountOwnerServer\AccountOwnerServer.csproj reference LoggerService\LoggerService.csproj
+
+/* Adicionando Referencia do Contracts no LoggerService */
+dotnet add LoggerService\LoggerService.csproj reference Contracts\Contracts.csproj
+
+/* Tem que estar na pasta LoggerService */
+cd LoggerService
+
+/* Instalando o pacote NLog */
+dotnet add package NLog.Extensions.Logging --version 5.2.1
