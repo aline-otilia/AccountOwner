@@ -6,20 +6,20 @@ namespace Entities.Models;
 [Table("owner")]
 public class Owner
 {
-    [Key]
-    public Guid OwnerId{ get; set; }
+    [Column("OwnerId")]
+    public Guid Id{ get; set; }
 
     [Required]
     [StringLength(60)]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     public  DateTime DateOfBirth { get; set; }
 
     [Required]
     [StringLength(100)]
-    public string? Address { get; set;}
+    public string Address { get; set;}
 
-    public ICollection<Account>? Accounts { get; set; }
+    public ICollection<Account> Accounts { get; set; }
 }
         
 
