@@ -10,6 +10,10 @@ public class MappingProfile : Profile
         CreateMap<Owner,OwnerDto>();
 
         CreateMap<Account,AccountDto>();
+
+        CreateMap<OwnerForCreationDto, Owner>();
+
+        CreateMap<OwnerForUpdateDto, Owner>();
     }
 
 }
