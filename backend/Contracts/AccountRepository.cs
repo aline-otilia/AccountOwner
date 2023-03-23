@@ -19,8 +19,4 @@ public class AccountRepository : RepositoryBase<Account>, IAccountRepository
         return FindByCondition(a => a.OwnerId.Equals(ownerId)).ToList();
     }
 
-    private object FindyByCondition(Func<object, bool> value)
-    {
-        throw new NotImplementedException();
-    }
 }
