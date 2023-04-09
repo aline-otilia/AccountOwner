@@ -10,6 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CollapseModule} from 'ngx-bootstrap/collapse';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { OwnerModule } from './owner/owner.module';
+import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { OwnerModule } from './owner/owner.module';
     AppComponent,
     HomeComponent,
     MenuComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    InternalServerComponent
   ],
   imports: [
     BrowserModule,
