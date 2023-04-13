@@ -15,7 +15,7 @@
       {{owner?.dateOfBirth | date: 'dd/MM/yyyy'}}
     </div>
   </div>
-  <div class="row" ngIf="owner?.accounts.length <=2; else advancedUser">
+  <div class="row" *ngIf="owner?.accounts.length <=2; else advancedUser">
     <div class="col-md-3">
       <strong>Type o user: </strong>
     </div>

@@ -12,6 +12,6 @@ namespace Entities.DataTransferObjects;
 
        [Required(ErrorMessage = "Campo obrigatório: Endereço")]
        [StringLength(100, ErrorMessage = "O Endereço não pode ter mais de 100 caracteres")]
-       public string Adress { get; set; } 
+       public string Address { get; set; } 
        
     }
