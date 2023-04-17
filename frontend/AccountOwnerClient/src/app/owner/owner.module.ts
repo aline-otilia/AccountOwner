@@ -4,16 +4,20 @@ import { CommonModule } from '@angular/common';
 import { OwnerRoutingModule } from './owner-routing.module';
 import { OwnerListComponent } from './owner-list/owner-list.component';
 import { OwnerDetailsComponent } from './owner-details/owner-details.component';
+import { OwnerAccountsComponent } from './owner-details/owner-accounts/owner-accounts.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     OwnerListComponent,
-    OwnerDetailsComponent
+    OwnerDetailsComponent,
+    OwnerAccountsComponent
   ],
   imports: [
     CommonModule,
-    OwnerRoutingModule
+    OwnerRoutingModule,
+    SharedModule
   ]
 })
 export class OwnerModule { }
