@@ -6,13 +6,15 @@ import { OwnerListComponent } from './owner-list/owner-list.component';
 import { OwnerDetailsComponent } from './owner-details/owner-details.component';
 import { OwnerAccountsComponent } from './owner-details/owner-accounts/owner-accounts.component';
 import { SharedModule } from '../shared/shared.module';
+import { OwnerCreateComponent } from './owner-create/owner-create.component';
 
 
 @NgModule({
   declarations: [
     OwnerListComponent,
     OwnerDetailsComponent,
-    OwnerAccountsComponent
+    OwnerAccountsComponent,
+    OwnerCreateComponent
   ],
   imports: [
     CommonModule,
