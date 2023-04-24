@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { InternalServerComponent }from './error-pages/internal-server/internal-server.component';
+import { OwnerCreateComponent } from './owner/owner-create/owner-create.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

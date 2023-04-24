@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form [formGroup]="ownerForm" autocomplete="off" novalidate(ngSubmit)="createOwner(ownerForm.value)">
+    <form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="createOwner(ownerForm.value)">
         <div class="card card-body bg-light mb-2 mt-2">
             <div class="row mb-3">
                 <label for="name" class="col-form-label col-md-2">Name of the owner: </label>
@@ -39,7 +39,7 @@
                     <button type="submit" class="btn btn-info" [disabled]="!ownerForm.valid">Save</button>
                 </div>
                 <div class="col-md-1">
-                    <button type="button" classe="btn btn-danger" (click)="redirectTooOwnerList()">Cancel</button>
+                    <button type="button" classe="btn btn-danger" (click)="redirectToOwnerList()">Cancel</button>
                 </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ export class OwnerCreateComponent implements OnInit {
         address: new FormControl('',[Validators.required, Validators.maxLength(100)])
       });  
     }
-    validateCrontrol = (controlName: string) => {
+    validateControl = (controlName: string) => {
       if (this.ownerForm.get(controlName).invalid && this.ownerForm.get(controlName).touched)
       return true;
 
@@ -41,5 +41,40 @@ export class OwnerCreateComponent implements OnInit {
       return true;
 
       return false
+    }
+    createOwner = (ownerFormValue) => {
+      if (this.ownerForm.valid)
+      this.executeOwnerCreation(ownerFormValue);
+    }
+
+    private executeOwnerCreation = (ownerFormValue) => {
+      const owner: OwnerForCreation = {
+        name: ownerFormValue.name,
+        dateOfBirth: this.datePipe.transform(ownerFormValue.dateOfBirth, 'yyyy-MM-dd'),
+        address: ownerFormValue.address
+      }
+      const apiUrl = 'api/owner';
+      this.repository.createOwner(apiUrl, owner)
+      .subscribe({
+        next: (own: Owner) => {
+          const config: ModalOptions = {
+            initialState: {
+              modalHeaderText: 'Success Message',
+              modalBodyText: `Owner: ${own.name} created successfully`,
+              okButtonText: 'OK'
+            }
+          };
+
+          this.bsModalRef = this.modal.show(SuccessModalComponent, config);
+          this.bsModalRef.content.redirectOnOk.subscribe(_=> this.redirectToOwnerList());
+        },
+        error: (err: HttpErrorResponse) => {
+          this.errorHandler.handleError(err);
+          this.errorMessage = this.errorHandler.errorMessage;
+        }
+      })
+    }
+    redirectToOwnerList = () => {
+      this.router.navigate(['/owner/list']);
     }
 }
