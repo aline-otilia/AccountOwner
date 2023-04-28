@@ -20,5 +20,31 @@ export class OwnerUpdateComponent implements OnInit {
   ownerForm: FormGroup;
   bsModalRef?:BsModalRef;
 
-  constructor(private repository: OwnerRepositoryService, private errorHandler: ErrorHandlerService,)
-}
+  constructor(private repository: OwnerRepositoryService, private errorHandler: ErrorHandlerService,
+  private router: Router, private activeRoute: ActivatedRoute, private datePipe: DatePipe, 
+  private modal: BsModalService) { }
+
+  ngOnInit(): void {
+    this.ownerForm = new FormGroup({
+      name: new FormControl('',[Validators.required, Validators.maxLength(60)]),
+      dateOfBirth: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required, Validators.maxLength(100)])
+    });
+
+    this.getOwnerById();
+  }
+  private getOwnerById = () => {
+    const ownerId: string = this.activeRoute.snapshot.params['id'];
+    const ownerByIdUri: string = `api/owner/${ownerId}`;
+
+    this.repository.getOwner(ownerByIdUri)
+    .subscribe({
+      next: (own: Owner) => {
+        this.owner = { ...own,
+          dateOfBirth: new Date(this.datePipe.transform(own.dateOfBirth, 'MM/dd/yyyy'))
+        };
+        error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
+        })
+    }
+    
+  
