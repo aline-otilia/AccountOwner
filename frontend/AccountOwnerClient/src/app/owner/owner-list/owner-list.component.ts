@@ -44,4 +44,9 @@ private getAllOwners = () => {
     const updateUrl: string = `/owner/update/${id}`;
     this.router.navigate([updateUrl]);
   }
+
+  public redirectToDeletePage = (id) => {
+    const deleteUrl: string = `/owner/delete/${id}`;
+    this.router.navigate([deleteUrl]);
+  }
 }

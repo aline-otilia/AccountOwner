@@ -25,7 +25,7 @@ export class OwnerRepositoryService {
     owner, this.generateHeaders());
     }
 
-    public updateOwner = (route: string, owner: Owner) => {
+    public updateOwner = (route: string, owner: OwnerForUpdate) => {
       return this.http.put(this.createCompleteRoute(route, this.envUrl.urlAddress), owner,
     this.generateHeaders());
     }

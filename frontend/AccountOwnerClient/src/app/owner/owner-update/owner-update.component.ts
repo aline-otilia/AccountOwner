@@ -43,8 +43,56 @@ export class OwnerUpdateComponent implements OnInit {
         this.owner = { ...own,
           dateOfBirth: new Date(this.datePipe.transform(own.dateOfBirth, 'MM/dd/yyyy'))
         };
+        this.ownerForm.patchValue(this.owner);
+      },
+      error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
+      })
+    }
+    validateControl = (controlName: string) => {
+      if (this.ownerForm.get(controlName).invalid && this.ownerForm.get(controlName).touched)
+      return true;
+
+      return false;
+    }
+
+    hasError = (controlName: string, errorName: string) => {
+      if (this.ownerForm.get(controlName).hasError(errorName))
+      return true;
+
+      return false;
+    }
+
+    public updateOwner = (ownerFormValue) => {
+      if (this.ownerForm.valid)
+      this.executeOwnerUpdate(ownerFormValue);
+    }
+
+    private executeOwnerUpdate = (ownerFormValue) => {
+      const ownerForUpd: OwnerForUpdate = {
+        name: ownerFormValue.name,
+        dateOfBirth: this.datePipe.transform(ownerFormValue.dateOfBirth, 'yyyy-MM-dd'),
+        address: ownerFormValue.address
+      }
+
+      const apiUrl: string = `api/owner/${this.owner.id}`;
+
+      this.repository.updateOwner(apiUrl, ownerForUpd)
+      .subscribe({
+        next:(_) => {
+          const config: ModalOptions = {
+            initialState: {
+              modalHeaderText: 'Success Message',
+              modalBodyText: 'Owner updated successfully',
+              okButtonText: 'Ok'
+            }
+          };
+          this.bsModalRef = this.modal.show(SuccessModalComponent, config);
+          this.bsModalRef.content.redirectOnOk.subscribe(_ => this.redirectToOwnerList());
+        },
         error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
-        })
+      })
     }
     
-  
+    public redirectToOwnerList = () => {
+      this.router.navigate(['/owner/list']);
+    }
