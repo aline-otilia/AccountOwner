@@ -26,32 +26,37 @@ BsModalService) { }
   }
 
    private getOwnerById = () => {
-const ownerId: string = this.activeRoute.snapshot.params['id'];
-const apiUri: string = `api/owner/${ownerId}`;
-this.repository.getOwner(apiUri)
-.subscribe({
-next: (own: Owner) => this.owner = own,
-error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
-})
-}redirectToOwnerList = () => {
-this.router.navigate(['/owner/list']);
-}
-deleteOwner = () => {
-const deleteUri: string = `api/owner/${this.owner.id}`;
-this.repository.deleteOwner(deleteUri)
-.subscribe({
-next: (_) => {
-const config: ModalOptions = {
-initialState: {
-modalHeaderText: 'Success Message',
-modalBodyText: `Owner deleted successfully`,
-okButtonText: 'OK'
-}
-};
-this.bsModalRef = this.modal.show(SuccessModalComponent, config);
-this.bsModalRef.content.redirectOnOk.subscribe(_ => this.redirectToOwnerList());
-},
-error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
-})
-}
+    const ownerId: string = this.activeRoute.snapshot.params['id'];
+    const apiUri: string = `api/owner/${ownerId}`;
+    this.repository.getOwner(apiUri)
+      .subscribe({
+        next: (own: Owner) => this.owner = own,
+        error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
+      })
+  }
+  
+    redirectToOwnerList = () => {
+      this.router.navigate(['/owner/list']);
+    }
+
+    deleteOwner = () => {
+      const deleteUri: string = `api/owner/${this.owner.id}`;
+  
+      this.repository.deleteOwner(deleteUri)
+        .subscribe({
+          next: (_) => {
+            const config: ModalOptions = {
+              initialState: {
+                modalHeaderText: 'Success Message',
+                modalBodyText: `Owner deleted successfully`,
+                okButtonText: 'OK'
+              }
+            };
+
+            this.bsModalRef = this.modal.show(SuccessModalComponent, config);
+            this.bsModalRef.content.redirectOnOk.subscribe(_ => this.redirectToOwnerList());
+          },
+          error: (err: HttpErrorResponse) => this.errorHandler.handleError(err)
+       })
+  }
 }

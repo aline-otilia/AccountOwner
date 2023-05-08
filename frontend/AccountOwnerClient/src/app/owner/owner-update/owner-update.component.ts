@@ -96,3 +96,4 @@ export class OwnerUpdateComponent implements OnInit {
     public redirectToOwnerList = () => {
       this.router.navigate(['/owner/list']);
     }
+  }

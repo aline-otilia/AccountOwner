@@ -7,23 +7,23 @@
                     <input type="text" formControlName="name" class="form-control">
                 </div>
                 <div class="col-md-5">
-                    <em *ngIf="validateControl('name') && hasError('name', required)">Name is required</em>
-                    <em *ngIf="validateControl('name') && hasError('name', maxlength)">Maxium allowed length is 60 characters.</em>
+                    <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is required</em>
+                    <em *ngIf="validateControl('name') && hasError('name', 'maxlength')">Maxium allowed length is 60 characters.</em>
                 </div>
             </div>
                 <div class="mb-3 row">
-                    <label for="dateOfBirth" class="col-form-label col-md-2">Date  of birth:</label>
+                    <label for="dateOfBirth" class="col-form-label col-md-2">Date of birth:</label>
                     <div class="col-md-5">
                         <input type="text" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" readonly bsDatepicker>
                     </div>
                     <div class="col-md-5">
-                        <em *ngIf="validateControl('dateOfBirth') && hasError('dateOfBirth', required)">Date of birth is required</em>
+                        <em *ngIf="validateControl('dateOfBirth') && hasError('dateOfBirth', 'required')">Date of birth is required</em>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="address" class="col-form-label col-md-2">Address: </label>
                     <div class="col-md-5">
-                        <input type="text" formControlName="address" id="address" class="form-ontrol">
+                        <input type="text" formControlName="address" id="address" class="form-control">
                     </div>
                     <div class="col-md-5">
                         <em *ngIf="validateControl('address') && hasError('address', 'required')">Address is required</em>
