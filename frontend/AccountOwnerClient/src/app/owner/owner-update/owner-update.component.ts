@@ -74,9 +74,9 @@ export class OwnerUpdateComponent implements OnInit {
         address: ownerFormValue.address
       }
 
-      const apiUrl: string = `api/owner/${this.owner.id}`;
+      const apiUri: string = `api/owner/${this.owner.id}`;
 
-      this.repository.updateOwner(apiUrl, ownerForUpd)
+      this.repository.updateOwner(apiUri, ownerForUpd)
       .subscribe({
         next:(_) => {
           const config: ModalOptions = {
